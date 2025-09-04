@@ -9,8 +9,20 @@ mongoose.connect(url)
     .catch(err => console.log('error connecting to MongoDB:', err.message))
 
 const personSchema = new mongoose.Schema({
-    name : String,
-    number : String
+    name : {
+      type: String,
+      minLength: 3
+    },
+    number : {
+      type: String,
+      minLength: 8,
+      validate: {
+        validator: v => {
+          return /^\d{2,3}-\d+$/.test(v);
+        },
+        message: props => "Invalid phone number. Use format like 09-1234556 or 040-22334455."
+      },
+    }
 })
 
 personSchema.set('toJSON', {
