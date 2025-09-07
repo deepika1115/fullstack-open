@@ -45,9 +45,8 @@ const App = () => {
             showMessage("notification", `${personData.name}'s number updated`)
             setNewName("")
             setNewNumber("")
-          }).catch(error => {
-            showMessage("error", `Information of ${newName} has already been removed from server`)
-            setPersons(persons.filter(p => p.id !== personExist.id))
+          }).catch(error => {console.log(error)
+            showMessage("error", error.response.data.error)
           })
       }
     }else{
@@ -59,6 +58,8 @@ const App = () => {
           showMessage("notification", `${personData.name} added`)
           setNewName("")
           setNewNumber("")
+        }).catch(error => {
+          showMessage("error", error.response.data.error)
         })
     }
   }
