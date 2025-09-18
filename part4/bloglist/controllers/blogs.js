@@ -37,21 +37,15 @@ blogRouter.delete('/:id', userExtractor, async(request, response) => {
   } 
 })
 
-blogRouter.put('/:id', userExtractor, async(request, response) => {
-  const user = request.user
+blogRouter.put('/:id', async(request, response) => {
   const {title, author, url, likes} =  request.body
 
   const blogToUpdate = await Blog.findById(request.params.id)
-
-  if(blogToUpdate.user.toString() !==  user.id){
-    return response.status(403).json({error: 'unauthorized user'})
-  }
 
   blogToUpdate.title = title
   blogToUpdate.author = author
   blogToUpdate.url = url
   blogToUpdate.likes = likes
-  blogToUpdate.user = user.id
 
   const result = await blogToUpdate.save()
   response.json(result)
