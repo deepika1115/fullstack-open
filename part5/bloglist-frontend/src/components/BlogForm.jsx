@@ -15,7 +15,7 @@ const BlogForm = ({ createBlog }) => {
 
   return (
     <div>
-      <h2>Create</h2>
+      <h2>create new</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>
@@ -47,7 +47,7 @@ const BlogForm = ({ createBlog }) => {
             />
           </label>
         </div>
-        <button type='submit'>Create</button>
+        <button type='submit'>create</button>
       </form>
     </div>
   )
