@@ -14,14 +14,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 const App = () => {
-  // const [blogs, setBlogs] = useState([])
-  // const [user, setUser] = useState(null)
-  
   const dispatch = useDispatch()
-  const blogs = useSelector(state => state.blogs.sort((a,b)=> b.likes - a.likes))
+  const blogs = useSelector(state => [...state.blogs].sort((a,b)=> b.likes - a.likes))
   const message = useSelector(state => state.notification)
   const user = useSelector(state => state.user)
-  console.log(" message in app:::", user)
 
   const blogFormRef = useRef()
 
